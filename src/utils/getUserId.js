@@ -6,7 +6,7 @@ export const getUserId = (request, requiredAuth = true) => {
     : request.connection.context.Authorization;
 
   if (header) {
-    const token = jwt.verify(header, "joseph");
+    const token = jwt.verify(header, process.env.PRISMA_AUTH_SECRET);
     return token.userId;
   }
 

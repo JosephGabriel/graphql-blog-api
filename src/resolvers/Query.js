@@ -1,3 +1,5 @@
+import { getUserId } from "../utils/getUserId";
+
 export const Query = {
   async myPosts(
     parent,

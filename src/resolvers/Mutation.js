@@ -135,7 +135,7 @@ export const Mutation = {
     const isPublished = await prisma.exists.Post({ id, published: true });
 
     if (isPublished && data.published === false) {
-      await prisma.mutation.deleteManyComment({ where: { post: { id } } });
+      await prisma.mutation.deleteManyComments({ where: { post: { id } } });
     }
 
     const post = await prisma.mutation.updatePost(

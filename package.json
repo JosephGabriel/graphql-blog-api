@@ -7,14 +7,12 @@
     "start": "node dist/index",
     "heroku-postbuild": "babel src --out-dir dist --copy-files",
     "dev": "env-cmd ./config/dev.env nodemon src/index --ext js,graphql --exec babel-node",
-    "deploy-dev":"prisma1 deploy ../config/dev.env",
-    "deploy-prod":"prisma1 deploy ../config/prod.env",
-    "get-schema": "graphql get-schema -p prisma",
-    "test": "jest --watch"
+    "get-schema": "graphql get-schema -p prisma --dotenv config/dev.env",
+    "test": "env-cmd ./config/test.env jest --watch --runInBand"
   },
   "jest": {
-    "globalSetup": "./test/jest/globalSetup.js",
-    "globalTeardown": "./test/jest/globalTeardown.js"
+    "globalSetup": "./tests/jest/globalSetup.js",
+    "globalTeardown": "./tests/jest/globalTeardown.js"
   },
   "keywords": [],
   "author": "",
@@ -27,7 +25,9 @@
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
     "bcrypt": "^5.0.1",
+    "cross-fetch": "^2.2.2",
     "env-cmd": "^8.0.2",
+    "graphql": "^14.0.2",
     "graphql-cli": "^2.16.4",
     "graphql-yoga": "^1.16.7",
     "jsonwebtoken": "^8.5.1",
